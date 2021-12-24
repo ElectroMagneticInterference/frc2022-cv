@@ -1,0 +1,35 @@
+{
+  "image_in_dir": "images/original",
+  "image_out_dir": "images/new",
+  "steps": [
+    {
+      "method": "format",
+      "from": "rgb",
+      "to": "hls"
+    },
+    {
+      "branch": ["l-branch", "r-branch"],
+      "merge": "compare"
+    }
+  ],
+  "l-branch": [
+    {
+      "method": "inRange",
+      "min": [0, 75, 200],
+      "max": [75, 255, 255]
+    },
+    {
+      "method": "morph",
+      "type": "open",
+      "kernel": [3, 4]
+    },
+    {
+      "method": "morph",
+      "type": "close",
+      "kernel": [5, 5],
+      "save": true,
+      "display": true
+    }
+  ],
+  "r-branch": []
+}
